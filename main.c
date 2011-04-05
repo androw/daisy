@@ -24,9 +24,6 @@ Data* calcDaisy(float t_min, float t_max, float t_opti, float alb_white, float a
 	float dare_black;
 	float dare_white;
     float dare_rabbit;
-	float dare_black_old;
-	float dare_white_old;
-    float dare_rabbit_old;
 	float alb_globe;
 	float t;
 	float t_black;
@@ -51,9 +48,6 @@ Data* calcDaisy(float t_min, float t_max, float t_opti, float alb_white, float a
         if (!rab) are_rabbit = 0;
         are_ground = 1 - (are_white + are_black + are_rabbit);
         
-        dare_white_old = 0;
-        dare_black_old = 0;
-        dare_rabbit_old = 0;
         i = 1;
         while (i <= 1000) {
             // Calc Global Albedo
@@ -74,7 +68,7 @@ Data* calcDaisy(float t_min, float t_max, float t_opti, float alb_white, float a
             } else {
                 b_white = 0;
             }
-            if ((rab) && (t_rabbit >= 273.15 - 10) && (t_rabbit <= 50 + 273.15) && (are_rabbit <= ((are_white + are_black)/3))) {
+            if ((rab) && (t_rabbit >= 273.15 + 5) && (t_rabbit <= 40 + 273.15) && (are_rabbit <= are_white + are_black) {
                 b_rabbit = 1 - 0.003265 * pow(t_opti - t_rabbit, 2);
             } else {
                 b_rabbit = 0;
@@ -89,26 +83,24 @@ Data* calcDaisy(float t_min, float t_max, float t_opti, float alb_white, float a
             dare_black = are_black*(b_black * are_ground - death);
             dare_white = are_white*(b_white * are_ground - death);
             if (rab) {
-                dare_rabbit = are_rabbit*(b_rabbit * are_ground - 0.05);
+                dare_rabbit = are_rabbit*(b_rabbit * are_ground - 0.003);
             } else {
                 dare_rabbit = 0;
             }
             
             // Does it converge ?
-            if ((fabs(dare_white_old) < 0.000001) && (fabs(dare_black_old) < 0.000001) & (fabs(dare_rabbit_old) < 0.0000003)) {
+            if ((fabs(dare_white) < 0.000001) && (fabs(dare_black) < 0.000001) && (fabs(dare_rabbit) < 0.0000003)) {
                 are_black = are_black + dare_black;
                 are_white = are_white + dare_white;
                 are_rabbit = are_rabbit + dare_rabbit;
                 are_ground = 1 - (are_black + are_white + are_rabbit);
                 break;
             } else {
-                dare_black_old = dare_black;
-                dare_white_old = dare_white;
-                dare_rabbit_old = dare_rabbit;
                 are_black = are_black + dare_black;
                 are_white = are_white + dare_white;
                 are_rabbit = are_rabbit + dare_rabbit;
                 are_ground = 1 - (are_black + are_white + are_rabbit);
+                //printf("DEBUG");
             }
             i++;
         }
@@ -165,7 +157,7 @@ void plot(Data* values, int whi, int bla, int temp, int rab) {
     
     if (rab) {
         plcol0( 1 );
-        plenv(xmin, xmax, ymin, ymax, 0, 0);
+        plenv(xmin, xmax, ymin, 0.1 , 0, 0);
         plcol0( 2 );
         pllab( "Solar luminosity", "Rabbits", "#frRabbits coverage over time" );
 	
@@ -188,7 +180,7 @@ void plot(Data* values, int whi, int bla, int temp, int rab) {
 
 int main (int argc, const char * argv[])
 {
-    Data* values = calcDaisy(5+273.15, 40+273.15, 22.5+273.15, 0.75, 0.01, 0.25, 0.01, 0.5, 20, 0.3, 0.5, 1.6, 0.002, 0, 0.003);
+    Data* values = calcDaisy(5+273.15, 40+273.15, 22.5+273.15, 0.75, 0.01, 0.25, 0.01, 0.5, 20, 0.3, 0.5, 1.6, 0.002, 0, 0.001);
 	//show(values);
 	
 	char  ver[80];
