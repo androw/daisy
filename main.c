@@ -68,7 +68,7 @@ Data* calcDaisy(float t_min, float t_max, float t_opti, float alb_white, float a
             } else {
                 b_white = 0;
             }
-            if ((rab) && (t_rabbit >= 273.15 + 5) && (t_rabbit <= 40 + 273.15) && (are_rabbit <= are_white + are_black) {
+            if ((rab) && (t_rabbit >= 273.15 + 5) && (t_rabbit <= 40 + 273.15) && (are_rabbit <= are_white + are_black)) {
                 b_rabbit = 1 - 0.003265 * pow(t_opti - t_rabbit, 2);
             } else {
                 b_rabbit = 0;
@@ -83,13 +83,13 @@ Data* calcDaisy(float t_min, float t_max, float t_opti, float alb_white, float a
             dare_black = are_black*(b_black * are_ground - death);
             dare_white = are_white*(b_white * are_ground - death);
             if (rab) {
-                dare_rabbit = are_rabbit*(b_rabbit * are_ground - 0.003);
+                dare_rabbit = are_rabbit*(b_rabbit * are_ground - 0.03);
             } else {
                 dare_rabbit = 0;
             }
             
             // Does it converge ?
-            if ((fabs(dare_white) < 0.000001) && (fabs(dare_black) < 0.000001) && (fabs(dare_rabbit) < 0.0000003)) {
+            if ((fabs(dare_white) < 0.000001) && (fabs(dare_black) < 0.000001) && (fabs(dare_rabbit) < 0.1)) {
                 are_black = are_black + dare_black;
                 are_white = are_white + dare_white;
                 are_rabbit = are_rabbit + dare_rabbit;
@@ -157,7 +157,7 @@ void plot(Data* values, int whi, int bla, int temp, int rab) {
     
     if (rab) {
         plcol0( 1 );
-        plenv(xmin, xmax, ymin, 0.1 , 0, 0);
+        plenv(xmin, xmax, ymin, ymax , 0, 0);
         plcol0( 2 );
         pllab( "Solar luminosity", "Rabbits", "#frRabbits coverage over time" );
 	
@@ -180,7 +180,7 @@ void plot(Data* values, int whi, int bla, int temp, int rab) {
 
 int main (int argc, const char * argv[])
 {
-    Data* values = calcDaisy(5+273.15, 40+273.15, 22.5+273.15, 0.75, 0.01, 0.25, 0.01, 0.5, 20, 0.3, 0.5, 1.6, 0.002, 0, 0.001);
+    Data* values = calcDaisy(5+273.15, 40+273.15, 22.5+273.15, 0.75, 0.01, 0.25, 0.01, 0.5, 20, 0.3, 0.5, 1.6, 0.002, 0, 0.003);
 	//show(values);
 	
 	char  ver[80];
