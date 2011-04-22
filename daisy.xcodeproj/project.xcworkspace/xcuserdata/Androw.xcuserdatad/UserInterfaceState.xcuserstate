@@ -1674,7 +1674,7 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>325165301.98888803</real>
+		<real>325165656.04296601</real>
 		<string>{5614, 368}</string>
 		<string>{5805, 0}</string>
 		<dict>
@@ -1877,19 +1877,19 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>36</integer>
+					<integer>142</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>35</integer>
+					<integer>143</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>150</integer>
+					<integer>144</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>34</integer>
+					<integer>145</integer>
 				</dict>
 			</array>
 			<key>NS.objects</key>
@@ -1912,8 +1912,8 @@
 				</dict>
 			</array>
 		</dict>
-		<real>323869490.61051399</real>
-		<string>{144, 737}</string>
+		<real>325165653.23021001</real>
+		<string>{144, 407}</string>
 		<string>{859, 0}</string>
 		<dict>
 			<key>$class</key>
@@ -2909,7 +2909,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>253</integer>
+					<integer>254</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -2973,9 +2973,10 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>116</integer>
+				<integer>253</integer>
 			</dict>
 		</dict>
+		<string>file://localhost/Users/Androw/Workspace/daisy/daisy/data.c</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -2990,10 +2991,9 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>254</integer>
+				<integer>116</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/Androw/Workspace/daisy/daisy/data.c</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4004,7 +4004,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>325165301.99300599</real>
+		<real>325165656.04528898</real>
 		<string>{5614, 368}</string>
 		<string>{5805, 0}</string>
 		<string>main()</string>
