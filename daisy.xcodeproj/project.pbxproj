@@ -8,14 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		E97615051348E4EB009A3B75 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = E97615041348E4EB009A3B75 /* main.c */; };
+		E97615161348F6EB009A3B75 /* data.c in Sources */ = {isa = PBXBuildFile; fileRef = E97615141348F6EB009A3B75 /* data.c */; };
+		E9953D4513490F9B0036D054 /* libplplotd.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9953D4413490F9B0036D054 /* libplplotd.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		E97614FE1348E4EA009A3B75 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = usr/share/man/man1;
+			dstSubfolderSpec = 10;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
@@ -26,6 +28,9 @@
 		E97615001348E4EB009A3B75 /* daisy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = daisy; sourceTree = BUILT_PRODUCTS_DIR; };
 		E97615041348E4EB009A3B75 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		E97615061348E4EB009A3B75 /* daisy.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = daisy.1; sourceTree = "<group>"; };
+		E97615141348F6EB009A3B75 /* data.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = data.c; sourceTree = "<group>"; };
+		E97615151348F6EB009A3B75 /* data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data.h; sourceTree = "<group>"; };
+		E9953D4413490F9B0036D054 /* libplplotd.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libplplotd.dylib; path = ../../../../opt/local/lib/libplplotd.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9953D4513490F9B0036D054 /* libplplotd.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +48,7 @@
 		E97614F51348E4E9009A3B75 = {
 			isa = PBXGroup;
 			children = (
+				E9953D4413490F9B0036D054 /* libplplotd.dylib */,
 				E97615031348E4EB009A3B75 /* daisy */,
 				E97615011348E4EB009A3B75 /* Products */,
 			);
@@ -59,6 +66,8 @@
 			isa = PBXGroup;
 			children = (
 				E97615041348E4EB009A3B75 /* main.c */,
+				E97615141348F6EB009A3B75 /* data.c */,
+				E97615151348F6EB009A3B75 /* data.h */,
 				E97615061348E4EB009A3B75 /* daisy.1 */,
 			);
 			path = daisy;
@@ -111,6 +120,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E97615161348F6EB009A3B75 /* data.c in Sources */,
 				E97615051348E4EB009A3B75 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,6 +142,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "daisy DEBUG";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -146,6 +157,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = daisy;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -157,6 +169,10 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -168,6 +184,10 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -191,6 +211,7 @@
 				E976150B1348E4EB009A3B75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
