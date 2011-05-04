@@ -8,13 +8,14 @@
 
 #include "data.h"
 
-Data* ajoutFin(Data* teteliste, float t, float black, float white, float rabbit, float solar) {
+Data* ajoutFin(Data* teteliste, float t, float black, float white, float rabbit, float solar, float grey) {
 	Data* q = (Data*) malloc(sizeof(Data));
 	q->t = t;
 	q->white = white;
 	q->black = black;
 	q->solar = solar;
     q->rabbit = rabbit;
+    q->grey = grey;
 	q->next = NULL;
 	if (teteliste == NULL) {
 		return q;
@@ -41,7 +42,7 @@ int lenght(Data* teteliste) {
 void show(Data* tete) {
 	Data* l = tete;
 	while (l != NULL) {
-		printf("Solar = %f Tmp = %f White = %f Black = %f Rabbit = %f\n\n", l->solar, l->t, l->white, l->black, l->rabbit);
+		printf("Solar = %f Tmp = %f White = %f Black = %f Rabbit = %f Grey = %f\n\n", l->solar, l->t, l->white, l->black, l->rabbit, l->grey);
 		l = l->next;
 	}
 }

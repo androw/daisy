@@ -22,10 +22,11 @@ typedef struct Data{
 	float t;
     float rabbit;
 	float solar;
+    float grey;
 	struct Data* next;
 } Data;
 
-Data* ajoutFin(Data* teteliste, float t, float black, float white, float rabbit, float solar);
+Data* ajoutFin(Data* teteliste, float t, float black, float white, float rabbit, float solar, float grey);
 int lenght(Data* teteliste);
 void show(Data* tete);
 
