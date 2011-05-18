@@ -68,7 +68,7 @@ Data* calcDaisy(float t_min, float t_max, float t_opti, float alb_white, float a
             t_grey = S * (alb_globe - alb_grey) + t;
             t_rabbit = t;
             // Calc birthrate
-            if ((rab) && (t_rabbit >= 273.15 + 5) && (t_rabbit <= 40 + 273.15) && (are_rabbit <= (are_white + are_black)/3)) {
+            if ((rab) && (t_rabbit >= 273.15 + 5) && (t_rabbit <= 40 + 273.15) && (are_rabbit <= (are_white + are_black + are_grey)/3)) {
                 b_rabbit = 1 - 0.003265 * pow(t_opti - t_rabbit, 2);
             } else {
                 b_rabbit = 0;
@@ -134,20 +134,22 @@ Data* calcDaisy(float t_min, float t_max, float t_opti, float alb_white, float a
 
 void plot(Data* values, int whi, int bla, int temp, int rab, int gre) {
 	int i;
-    PLFLT x[500], y[500], w[500], z[500], t[500], g[500];
+    PLFLT x[1000], y[1000], w[1000], z[1000], t[1000], g[1000];
 	PLFLT xmin, xmax, ymin, ymax, tmin, tmax;
 	
 	Data* l = values;
 	//int le = lenght(values);
 	int le = 500;
 	for (i = 0; i<le; i++) {
-		z[i] = l->black;
-		y[i] = l->white;
-		t[i] = l->t;
+		
 		x[i] = l->solar;
-        w[i] = l->rabbit;
-        g[i] = l->grey;
+        
 		while ((x[i] == l->solar) && (l != NULL)) {
+            w[i] = l->rabbit;
+            g[i] = l->grey;
+            z[i] = l->black;
+            y[i] = l->white;
+            t[i] = l->t;
 			l = l->next;
 		}
 	}
@@ -214,16 +216,18 @@ void plot(Data* values, int whi, int bla, int temp, int rab, int gre) {
 
 int main (int argc, const char * argv[])
 {
-    Data* values = calcDaisy(5+273.15, 40+273.15, 22.5+273.15, 0.75, 0.01, 0.25, 0.01, 0.5, 20, 0.3, 0.5, 1.6, 0.002, 0, 0.003, 1, 0.5, 0.01);
+    int grey = 1;
+    int rabb = 1;
+    Data* values = calcDaisy(5+273.15, 40+273.15, 22.5+273.15, 0.75, 0.01, 0.25, 0.01, 0.5, 20, 0.3, 0.5, 1.6, 0.002, rabb, 0.003, grey, 0.5, 0.01);
 	//show(values);
 	
 	char  ver[80];
 	plgver( ver );
     printf("PLplot library version: %s\n", ver );
     
-    plstar(1, 5);
+    plstar(1, 3+rabb+grey);
     
-    plot(values, 1, 1, 1, 1, 1);
+    plot(values, 1, 1, 1, rabb, grey);
     
     plend();
     return 0;
