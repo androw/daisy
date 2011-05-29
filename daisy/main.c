@@ -140,10 +140,14 @@ void plot(Data* values, int whi, int bla, int temp, int rab, int gre) {
 	Data* l = values;
 	//int le = lenght(values);
 	int le = 500;
+    //while (l->solar < 0.70){
+    //    l = l->next;
+    //}
 	for (i = 0; i<le; i++) {
 		
 		x[i] = l->solar;
-        
+        //x[i] = i;
+
 		while ((x[i] == l->solar) && (l != NULL)) {
             w[i] = l->rabbit;
             g[i] = l->grey;
@@ -162,52 +166,52 @@ void plot(Data* values, int whi, int bla, int temp, int rab, int gre) {
 	tmax = t[le-1];
 	
 	if (whi) {
-        plcol0( 1 );
+        plcol0( 9 );
         plenv(xmin, xmax, ymin, ymax, 0, 0);
-        plcol0( 2 );
+        plcol0( 9 );
         pllab( "Solar luminosity", "White daisies", "#frWhite daisies coverage over time" );
 	
-        plcol0(3);
+        plcol0(1);
         plline(le, x, y);
     }
 	
 	if (bla) {
-        plcol0( 1 );
+        plcol0( 9 );
         plenv(xmin, xmax, ymin, ymax, 0, 0);
-        plcol0( 2 );
+        plcol0( 9 );
         pllab( "Solar luminosity", "Black daisies", "#frBlack daisies coverage over time" );
 	
-        plcol0(3);
+        plcol0(1);
         plline(le, x, z);
     }
     
     if (gre) {
-        plcol0( 1 );
+        plcol0( 9 );
         plenv(xmin, xmax, ymin, ymax, 0, 0);
-        plcol0( 2 );
+        plcol0( 9 );
         pllab( "Solar luminosity", "Grey daisies", "#frGrey daisies coverage over time" );
         
-        plcol0(3);
+        plcol0(1);
         plline(le, x, g);
     }
     
     if (rab) {
-        plcol0( 1 );
+        plcol0( 9 );
         plenv(xmin, xmax, ymin, ymax , 0, 0);
-        plcol0( 2 );
+        plcol0( 9 );
         pllab( "Solar luminosity", "Rabbits", "#frRabbits coverage over time" );
 	
-        plcol0(3);
+        plcol0(1);
         plline(le, x, w);
     }
 	
 	if (temp) {
-        plcol0( 1 );
+        plcol0( 9 );
         plenv(xmin, xmax, tmin, tmax, 0, 0);
-        plcol0( 2 );
+        plcol0( 9 );
         pllab( "Solar luminosity", "Temperature", "#frGlobal temperature over time" );
 	
-        plcol0(3);
+        plcol0(1);
         plline(le, x, t);
     }
 }
@@ -216,15 +220,15 @@ void plot(Data* values, int whi, int bla, int temp, int rab, int gre) {
 
 int main (int argc, const char * argv[])
 {
-    int grey = 1;
-    int rabb = 1;
+    int grey = 0;
+    int rabb = 0;
     Data* values = calcDaisy(5+273.15, 40+273.15, 22.5+273.15, 0.75, 0.01, 0.25, 0.01, 0.5, 20, 0.3, 0.5, 1.6, 0.002, rabb, 0.003, grey, 0.5, 0.01);
 	//show(values);
 	
 	char  ver[80];
 	plgver( ver );
     printf("PLplot library version: %s\n", ver );
-    
+    plscolbg(255,255,255);
     plstar(1, 3+rabb+grey);
     
     plot(values, 1, 1, 1, rabb, grey);
