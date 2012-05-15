@@ -98,6 +98,9 @@
 /* Begin PBXProject section */
 		E97614F71348E4E9009A3B75 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = E97614FA1348E4E9009A3B75 /* Build configuration list for PBXProject "daisy" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
